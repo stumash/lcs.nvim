@@ -10,6 +10,14 @@ I use plug, adapt the above line as needed for you plugin manager of choice.
 
 # Usage
 
+You must call `setup()` for the plugin to work:
+
+```lua
+require'lcs'.setup()
+```
+
+You can override the plugin defaults like so:
+
 ```lua
 -- these are the defaults, you can omit any of these settings
 require"lcs.nvim".setup{
@@ -23,11 +31,13 @@ require"lcs.nvim".setup{
 }
 ```
 
+These functions are exposed for use and can be key-mapped like so:
+
 ```vim
-nnoremap <leader>LCSs <CMD>lua toggleShowSpace()<CR>
-nnoremap <leader>LCSt <CMD>lua toggleShowTab()<CR>
-nnoremap <leader>LCSe <CMD>lua toggleShowEol()<CR>
-nnoremap <leader>LCSr <CMD>lua toggleShowTrail()<CR>
+nnoremap <leader>LCSs <CMD>lua require'lcs'.toggleShowSpace()<CR>
+nnoremap <leader>LCSt <CMD>lua require'lcs'.toggleShowTab()<CR>
+nnoremap <leader>LCSe <CMD>lua require'lcs'.toggleShowEol()<CR>
+nnoremap <leader>LCSr <CMD>lua require'lcs'.toggleShowTrail()<CR>
 " toggle listchar visibility
-nnoremap <leader>LCSL <CMD>lua toggleListchars()<CR>
+nnoremap <leader>LCSL <CMD>lua require'lcs'.toggleListchars()<CR>
 ```
