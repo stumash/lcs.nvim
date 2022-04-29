@@ -63,12 +63,14 @@ function M.setup(user_lcs_settings)
   lcs_settings.enabled = default_lcs_settings.enabled
   lcs_settings.chars = vim.deepcopy(default_lcs_settings.chars)
 
-  -- apply user settings
-  if user_lcs_settings.enabled ~= nil then
-    lcs_settings.enabled = user_lcs_settings.enabled
-  end
-  if user_lcs_settings.chars ~= nil then
-    lcs_settings.chars = vim.deepcopy(user_lcs_settings.chars)
+  if user_lcs_settings ~= nil then
+    -- apply user settings
+    if user_lcs_settings.enabled ~= nil then
+      lcs_settings.enabled = user_lcs_settings.enabled
+    end
+    if user_lcs_settings.chars ~= nil then
+      lcs_settings.chars = vim.deepcopy(user_lcs_settings.chars)
+    end
   end
 
   setLcs()
