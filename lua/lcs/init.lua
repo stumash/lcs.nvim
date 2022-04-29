@@ -74,4 +74,9 @@ function M.setup(user_lcs_settings)
   setLcs()
 end
 
+-- returns a deep copy of the current config for user inspection
+function M.getConfig()
+  return vim.deepcopy(lcs_settings)
+end
+
 return M
