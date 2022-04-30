@@ -6,7 +6,7 @@ Manage your `listchars` display settings easily.
 
 `Plug 'stumash/lcs.nvim'`
 
-I use plug, adapt the above line as needed for you plugin manager of choice.
+I use plug, adapt the above line as needed for your plugin manager of choice.
 
 # Usage
 
