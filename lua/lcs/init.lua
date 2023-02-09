@@ -1,6 +1,6 @@
 local M = {}
 
-local M.LCS_SETTINGS = {}
+M.LCS_SETTINGS = {}
 local DEFAULT_LCS_SETTINGS = {
   enabled = true,
   chars = {
