@@ -1,16 +1,17 @@
 local M = {}
 
-local lcs_settings = {}
-local default_lcs_settings = {
+local M.LCS_SETTINGS = {}
+local DEFAULT_LCS_SETTINGS = {
   enabled = true,
   chars = {
-    eol = { enabled = true, value = [[eol:↴]] },
-    tab = { enabled = true, value = [[tab:→\ ]] },
-    spc = { enabled = false, value = [[space:·]] },
-    trail = { enabled = true, value = [[trail:-]] },
+    s = { enabled = false, value = [[space:·]] },
+    tb = { enabled = true, value = [[tab:→\ ]] },
+    e = { enabled = false, value = [[eol:↴]] },
+    tr = { enabled = true, value = [[trail:➤]] },
   },
 }
 
+-- use M.LCS_SETTINGS to configure `vim.o.lcs` and `vim.o.list`
 local function setLcs()
   local lcs = ''
 
@@ -22,63 +23,37 @@ local function setLcs()
     end
   end
 
-  for _, setting in pairs(lcs_settings.chars) do
+  for _, setting in pairs(M.LCS_SETTINGS.chars) do
     if setting.enabled then
       addToLcs(setting.value)
     end
   end
   vim.o.lcs = lcs
 
-  if lcs_settings.enabled then
+  if M.LCS_SETTINGS.enabled then
     vim.o.list = true
   else
     vim.o.list = false
   end
 end
 
-function M.toggleShowSpace()
-  lcs_settings.chars.spc.enabled = not lcs_settings.chars.spc.enabled
-  setLcs()
-end
-function M.toggleShowTab()
-  lcs_settings.chars.tab.enabled = not lcs_settings.chars.tab.enabled
-  setLcs()
-end
-function M.toggleShowEol()
-  lcs_settings.chars.eol.enabled = not lcs_settings.chars.eol.enabled
-  setLcs()
-end
-function M.toggleShowTrail()
-  lcs_settings.chars.trail.enabled = not lcs_settings.chars.trail.enabled
-  setLcs()
-end
-function M.toggleListchars()
-  lcs_settings.enabled = not lcs_settings.enabled
-  setLcs()
-end
-
-
 function M.setup(user_lcs_settings)
   -- copy defaults
-  lcs_settings.enabled = default_lcs_settings.enabled
-  lcs_settings.chars = vim.deepcopy(default_lcs_settings.chars)
-
+  M.LCS_SETTINGS = vim.deepcopy(DEFAULT_LCS_SETTINGS)
+  -- copy user settings if they exist
   if user_lcs_settings ~= nil then
-    -- apply user settings
-    if user_lcs_settings.enabled ~= nil then
-      lcs_settings.enabled = user_lcs_settings.enabled
-    end
-    if user_lcs_settings.chars ~= nil then
-      lcs_settings.chars = vim.deepcopy(user_lcs_settings.chars)
-    end
+    M.LCS_SETTINGS = vim.deepcopy(user_lcs_settings)
   end
-
   setLcs()
 end
 
--- returns a deep copy of the current config for user inspection
-function M.getConfig()
-  return vim.deepcopy(lcs_settings)
+function M.toggleShow(listcharName)
+  if listcharName == nil then
+    M.LCS_SETTINGS.enabled = not M.LCS_SETTINGS.enabled
+  else
+    M.LCS_SETTINGS.chars[listcharName].enabled = not M.LCS_SETTINGS.chars[listcharName].enabled
+  end
+  setLcs()
 end
 
 return M
