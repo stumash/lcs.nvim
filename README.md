@@ -26,7 +26,7 @@ require"lcs.nvim".setup{
     eol = { enabled = true, value = [[eol:↴]] },
     tab = { enabled = true, value = [[tab:→\ ]] },
     spc = { enabled = false, value = [[space:·]] },
-    trail = { enabled = true, value = [[space:-]] },
+    trail = { enabled = true, value = [[trail:-]] },
   },
 }
 ```
