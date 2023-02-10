@@ -31,10 +31,10 @@ require"lcs".setup{
   -- this is the default config
   enabled = true,
   chars = {
-    s = { enabled = false, value = [[space:·]] },
+    s = { enabled = false, value = [[space:•]] },
     tb = { enabled = true, value = [[tab:→\ ]] },
     e = { enabled = false, value = [[eol:↴]] },
-    tr = { enabled = true, value = [[trail:➤]] },
+    tr = { enabled = true, value = [[trail:⁃]] },
   },
 }
 ```

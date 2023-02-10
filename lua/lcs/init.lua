@@ -4,10 +4,10 @@ M.LCS_SETTINGS = {}
 local DEFAULT_LCS_SETTINGS = {
   enabled = true,
   chars = {
-    s = { enabled = false, value = [[space:·]] },
+    s = { enabled = false, value = [[space:•]] },
     tb = { enabled = true, value = [[tab:→\ ]] },
     e = { enabled = false, value = [[eol:↴]] },
-    tr = { enabled = true, value = [[trail:➤]] },
+    tr = { enabled = true, value = [[trail:⁃]] },
   },
 }
 
