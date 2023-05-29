@@ -47,11 +47,23 @@ function M.setup(user_lcs_settings)
   setLcs()
 end
 
+function bool_to_str(b)
+  if b then
+    return 'true'
+  else
+    return 'false'
+  end
+end
+
 function M.toggleShow(listcharName)
   if listcharName == nil then
     M.LCS_SETTINGS.enabled = not M.LCS_SETTINGS.enabled
+    local setting_str = bool_to_str(M.LCS_SETTINGS.enabled)
+    print('show all listchars: ' .. setting_str)
   else
     M.LCS_SETTINGS.chars[listcharName].enabled = not M.LCS_SETTINGS.chars[listcharName].enabled
+    local setting_str = bool_to_str(M.LCS_SETTINGS.chars[listcharName].enabled)
+    print('show listchar \'' .. listcharName .. '\': ' .. setting_str)
   end
   setLcs()
 end
