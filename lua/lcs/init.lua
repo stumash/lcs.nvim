@@ -53,8 +53,9 @@ local function mergeSettings(mergeInto, mergeFrom)
 end
 
 function M.setup(user_lcs_settings)
+  M.user_lcs_settings = vim.deepcopy(user_lcs_settings)
   M.LCS_SETTINGS = vim.deepcopy(DEFAULT_LCS_SETTINGS)
-  mergeSettings(M.LCS_SETTINGS, user_lcs_settings)
+  mergeSettings(M.LCS_SETTINGS, M.user_lcs_settings)
   setLcs()
 end
 
