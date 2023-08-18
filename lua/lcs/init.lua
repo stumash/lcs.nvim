@@ -37,13 +37,24 @@ local function setLcs()
   end
 end
 
+local function mergeSettings(mergeInto, mergeFrom)
+  if type(mergeInto) ~= "table" then return end
+  if mergeFrom == nil then return end
+
+  for k,v in pairs(mergeInto) do
+    if type(v) == "table" then
+      mergeSettings(v, mergeFrom[k])
+    else
+      if mergeFrom[k] ~= nil then
+        mergeInto[k] = mergeFrom[k]
+      end
+    end
+  end 
+end
+
 function M.setup(user_lcs_settings)
-  -- copy defaults
   M.LCS_SETTINGS = vim.deepcopy(DEFAULT_LCS_SETTINGS)
-  -- copy user settings if they exist
-  if user_lcs_settings ~= nil then
-    M.LCS_SETTINGS = vim.deepcopy(user_lcs_settings)
-  end
+  mergeSettings(M.LCS_SETTINGS, user_lcs_settings)
   setLcs()
 end
 
